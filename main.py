@@ -1,5 +1,5 @@
 import subprocess
-import os
+import sys
 
 # #options
 # zsh = 1
@@ -22,6 +22,8 @@ def alias():
         original_command = f"echo 'alias {short_hand}='{command}'' >> {shell_options}"
         subprocess.run(original_command, shell=True)
         print(original_command)
+    else:
+        sys.exit("Cancelled")
 # TODO add execution safety.
 def simple_command():
     simple_command1 = input("Type out a command: ")
