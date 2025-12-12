@@ -14,9 +14,11 @@ ascii()
 
 # TODO add more structure and features.
 def alias():
-    shell_options = str(input(f"Enter your shell type:\n1.zsh\n2.bash\n:")).lower()
-
-    if shell_options == "1":
+    shell_options = str(input(f"Enter your shell type:\n1. zsh\n2. bash\n:")).lower()
+    
+    if  shell_options != "1" or "2":
+        print("You didn't choose a valid option zsh will be set as the default.")
+    elif shell_options == "1":
         shell_options = "./zshrc"
     elif shell_options == "2":
         shell_options = "./bashrc"
@@ -27,7 +29,7 @@ def alias():
 
     if verification_input == "y":
         original_command = f"echo 'alias {short_hand}='{command}'' >> {shell_options}"
-        subprocess.run(original_command, shell=True)
+        subprocess.run(original_command, capture_output=True, text=True)
         print(original_command)
     else:
         sys.exit("Cancelled")
@@ -36,7 +38,7 @@ def alias():
 # TODO add execution safety.
 def simple_command():
     simple_command1 = input("Type out a command: ")
-    subprocess.run(simple_command1, shell=True)
+    subprocess.run(simple_command1, capture_output=True, text=True)
 
 
 # simple_command()
